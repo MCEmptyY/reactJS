@@ -23,6 +23,7 @@ export default function Stafflist() {
   return (
     <>
       <div className="container">
+        <h1>Chọn 1 nhân viên</h1>
         <div className="row">{renderStafflist}</div>
         <hr />
         {staffSelected !== '' &&
