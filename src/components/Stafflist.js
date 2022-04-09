@@ -1,29 +1,39 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import DetailsStaff from "./StaffDetails";
 import { STAFFS, DEPARTMENTS } from "./staffs/staffs";
 
+
 export default function Stafflist() {
+
+
   const [staffSelected, setStaffSelected] = useState("");
 
   const onClickHandle = (staff) => {
     setStaffSelected(staff);
   };
 
+  
+
   const renderStafflist = STAFFS.map((data) => {
     return (
-      <div key={data.id} className="col-3 mt-3">
-        <div  className="card text-white bg-dark">
-          <div className="card-body" onClick={() => onClickHandle(data)}>
-            <h3 className="card-text text-center">{data.name}</h3>
+      <div key={data.id} className="col-2 mt-3">
+          <div  className="card" >
+            <div className="card-body bg-warning" onClick={() => onClickHandle(data)}>
+              <img src={require('./staffs/staff.png')} className="text-center w-100"  alt="..."/>
+              <h3 className="card-text text-center ">{data.name}</h3>
+            </div>
           </div>
-        </div>
       </div>
     );
   });
 
   return (
     <>
-      <div className="container">
-        <h1>Chọn 1 nhân viên</h1>
+      <div className="container-fluid">
+        <h1>Nhân Viên</h1>
+        <hr />
         <div className="row">{renderStafflist}</div>
         <hr />
         {staffSelected !== '' &&
@@ -36,6 +46,11 @@ export default function Stafflist() {
             <h1> Số ngày đã làm thêm: {staffSelected.overTime}</h1>
           </>
         }
+        <hr />
+        {DetailsStaff()}
+        
+        
+        
       </div>
     </>
   );

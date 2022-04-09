@@ -1,13 +1,27 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { STAFFS } from "./components/staffs/staffs";
+
+import Header from "./components/Header";  
 import Stafflist from "./components/Stafflist";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="bg-primary p-3 text-light">Ứng dụng quản lý nhân sự V1.0</h1>
-      <Stafflist/>
-    </div>
+    <Router>
+      <div>
+        <Header/>
+        <Stafflist/>
+        <Routes>
+          <Route exact path="/staff" element={ < DetailsStaff />}></Route>
+        </Routes>
+      </div>
+    </Router>
+      
+      
+      
+
+    
   );
 }
 
