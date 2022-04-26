@@ -3,8 +3,8 @@ import { STAFFS } from "./staffs/staffs";
 
 export default function SalaryComponents() {
   const Salary = STAFFS.map((c) => {
-    let a = c.salaryScale * 3000000 + c.overTime * 200000;
-    let Salary = parseInt(a);
+    let total = c.salaryScale * 3000000 + c.overTime * 200000;
+    let Salary = parseInt(total);
     return (
       <>
         <div className="col-lg-4 col-md-6">
