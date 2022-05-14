@@ -2,9 +2,12 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="container-fluid footer bg-danger">
+    <div
+      className="container-fluid footer"
+      style={{ backgroundColor: "#f3e456" }}
+    >
       <div className="row align-items-center justify-content-between">
-        <div className="col-md ps-5 pt-1 ">
+        <div className="col-md ps-5 pt-3s ">
           <div className="lead"></div>
           <h1>Our Address:</h1>
           <p>121, Clear Water Ray Road Clear Water Bay, Kowloon HONGKONG</p>
