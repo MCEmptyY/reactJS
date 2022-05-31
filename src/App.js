@@ -19,6 +19,7 @@ function App() {
         <Route path="/Department" element={<DepartmentStaff />}></Route>
         <Route path="/Salary" element={<SalaryComponents />}></Route>
       </Routes>
+      <br />
       <Footer />
     </Router>
   );

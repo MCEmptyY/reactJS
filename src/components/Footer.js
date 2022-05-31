@@ -31,7 +31,7 @@ export default function Footer() {
       <div className="row">
         <div className="text-center">
           <hr />
-          <h6> Designed by MC | Version: 1.0.0 | 26/11/2021</h6>
+          <h6> Make by MC | React and Redux | 14.05.2022</h6>
         </div>
       </div>
     </div>
