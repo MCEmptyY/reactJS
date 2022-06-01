@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DEPARTMENTS } from "./staffs/staffs";
+import { DEPARTMENTS } from "../db/staffs/staffs";
 
 export default function Department() {
   const DepartmentStaff = DEPARTMENTS.map((a) => {

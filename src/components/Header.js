@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
-import ModalCustom from './ModalCustom'
+import ModalAddStaff from './ModalAddStaff'
 
 export default function Header() {
     const [modal, setModal] = useState(false)
@@ -37,7 +37,7 @@ export default function Header() {
                     <Button color="danger" onClick={toggle}>
                         + Thêm nhân viên
                     </Button>
-                    <ModalCustom isOpen={modal} toggle={toggle}/>
+                    <ModalAddStaff isOpen={modal} toggle={toggle}/>
                 </div>
             </div>
         </>

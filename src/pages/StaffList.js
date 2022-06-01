@@ -1,18 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import DetailsStaff from "./StaffDetails";
-import { STAFFS } from "./staffs/staffs";
+import { STAFFS } from "../db/staffs/staffs";
 
-export default function Stafflist() {
-  const renderStafflist = STAFFS.map((staff) => {
+export default function StaffList() {
+  const renderStaffList = STAFFS.map((staff) => {
     return (
       <div key={staff.id} className="col-2 mt-3">
         <Link to={`/staff/${staff.id}`}>
           <div className="card">
             <div className="card-body bg-warning">
               <img
-                src={require("./staffs/staff.png")}
+                src={require("../db/staffs/staff.png")}
                 className="text-center w-100"
                 alt="..."
               />
@@ -27,7 +26,7 @@ export default function Stafflist() {
   return (
     <>
       <div className="container">
-        <div className="row">{renderStafflist}</div>
+        <div className="row">{renderStaffList}</div>
       </div>
     </>
   );
