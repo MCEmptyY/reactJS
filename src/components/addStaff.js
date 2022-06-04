@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+
 import {
+  Button,
   Modal,
   ModalHeader,
   ModalBody,
-  Button,
   ModalFooter,
   Form,
   FormGroup,
@@ -11,45 +12,104 @@ import {
   Input,
 } from "reactstrap";
 
-export default function AddStaff({ open }) {
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
-  if (!open) return null;
+function AddStaff(props) {
+  const isOpen = props.isOpen;
+  const toggle = props.toggle;
+
   return (
     <>
       <div>
-        <Modal isOpen={modal} toggle={toggle}>
-          <Form>
-            <Label>Thêm Nhân Viên</Label>
-            <Button>X</Button>
-            <FormGroup>
-              <Label>Tên:</Label>
-              <Input type="text"></Input>
-              <Label>Ngày sinh:</Label>
-              <Input type="date"></Input>
-              <Label>Ngày vào công ty:</Label>
-              <Input type="date"></Input>
-              <Label>Phòng ban:</Label>
-              <Input type="select"></Input>
-              <Label>Hệ số lương:</Label>
-              <Input type="text"></Input>
-              <Label>Số ngày nghỉ:</Label>
-              <Input type="text"></Input>
-              <Label>Số ngày đã làm thêm:</Label>
-              <Input type="text"></Input>
-            </FormGroup>
-            <Button color="primary">Thêm</Button>
-          </Form>
-        </Modal>
-
-        {/* <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader>Title</ModalHeader>
+        <Modal isOpen={isOpen}>
+          <ModalHeader toggle={toggle}>Thêm Nhân Viên</ModalHeader>
           <ModalBody>
-            <h1>Hello</h1>
+            <Form>
+              <FormGroup>
+                <Label>Tên:</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="Tên Nhân Viên"
+                  type="text"
+                  invalid
+                ></Input>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Ngày sinh:</Label>
+                <Input
+                  id="doB"
+                  name="doB"
+                  placeholder="Ngày sinh"
+                  type="date"
+                  invalid
+                ></Input>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Ngày vào công ty:</Label>
+                <Input
+                  id="startDate"
+                  name="startDate"
+                  placeholder="Ngày vào công ty"
+                  type="date"
+                  invalid
+                ></Input>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Phòng ban:</Label>
+                <Input
+                  id="Department"
+                  name="Department"
+                  placeholder="Phòng ban"
+                  type="select"
+                >
+                  <option>Sale</option>
+                  <option>HR</option>
+                  <option>Marketing</option>
+                  <option>IT</option>
+                  <option>Finance</option>
+                </Input>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Hệ số lương:</Label>
+                <Input
+                  id="scalary"
+                  name="scalary"
+                  placeholder="Hệ số lương"
+                  type="number"
+                ></Input>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Số ngày nghỉ còn lại:</Label>
+                <Input
+                  id="annualLeave"
+                  name="annualLeave"
+                  placeholder="Số ngày nghỉ còn lại"
+                  type="number"
+                ></Input>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Số ngày đã làm thêm:</Label>
+                <Input
+                  id="overtime"
+                  name="overtime"
+                  placeholder="Số ngày đã làm thêm"
+                  type="number"
+                ></Input>
+              </FormGroup>
+            </Form>
           </ModalBody>
-          <ModalFooter>Ok</ModalFooter>
-        </Modal> */}
+          <ModalFooter>
+            <Button color="primary">Thêm</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     </>
   );
 }
+
+export default AddStaff;
