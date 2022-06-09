@@ -26,7 +26,6 @@ export default function Stafflist() {
     event.preventDefault();
   };
 
-  console.log(input);
   const renderStafflist = STAFFS.filter((val) => {
     return val.name.toLowerCase().includes(input.toLowerCase());
   }).map((staff) => {
@@ -50,42 +49,6 @@ export default function Stafflist() {
 
   return (
     <>
-      <div className="p-5">
-        <Button color="danger" onClick={() => setOpenModal(!openModal)}>
-          +
-        </Button>
-        <Modal isOpen={openModal} toggle={toggle}>
-          <ModalHeader>
-            Thêm Nhân Viên
-            <Button style={{ margin: "0 0 0 17rem" }}>X</Button>
-          </ModalHeader>
-          <ModalBody>
-            <Form>
-              <FormGroup>
-                <Label>Tên:</Label>
-                <Input type="text" invalid></Input>
-                <FormFeedback>Yêu cầu nhập</FormFeedback>
-              </FormGroup>
-              <Label>Ngày sinh:</Label>
-              <Input type="date" invalid></Input>
-              <Label>Ngày vào công ty:</Label>
-              <Input type="date" invalid></Input>
-              <Label>Phòng ban:</Label>
-              <Input type="select"></Input>
-              <Label>Hệ số lương:</Label>
-              <Input type="text"></Input>
-              <Label>Số ngày nghỉ:</Label>
-              <Input type="text"></Input>
-              <Label>Số ngày đã làm thêm:</Label>
-              <Input type="text"></Input>
-            </Form>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary">Thêm</Button>
-          </ModalFooter>
-        </Modal>
-      </div>
-      <hr />
       <form onSubmit={handlesubmit}>
         <div className="row">
           <div className="col-6 mt-2 text-center"></div>
@@ -100,6 +63,12 @@ export default function Stafflist() {
                 placeholder="Search here ..."
               />
               {/* <input type="submit" value="Submit" className="btn btn-primary" /> */}
+            </div>
+            <div className="text-center">
+              <Button color="danger" onClick={() => setOpenModal(!openModal)}>
+                +
+              </Button>
+              <Addstaff isOpen={openModal} toggle={toggle} />
             </div>
           </div>
         </div>

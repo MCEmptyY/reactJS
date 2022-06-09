@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Button,
@@ -11,8 +11,47 @@ import {
   Label,
   Input,
 } from "reactstrap";
+import { STAFFS } from "./staffs/staffs";
 
 function AddStaff(props) {
+  const [addNewUser, setaddNewUser] = useState(STAFFS);
+  const [addData, setAddData] = useState({
+    name: "",
+    doB: "",
+    salaryScale: 0,
+    startDate: "",
+    department: "",
+    annualLeave: 0,
+    overTime: 0,
+  });
+
+  const handleAddUserOnchange = (event) => {
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+
+    const newFormData = { ...addData };
+    newFormData[fieldName] = fieldValue;
+
+    setAddData(newFormData);
+  };
+
+  const handleAddFormSubmit = (event) => {
+    const newUser = {
+      name: addData.name,
+      doB: addData.doB,
+      salaryScale: addData.salaryScale,
+      startDate: addData.startDate,
+      department: addData.department,
+      annualLeave: addData.annualLeave,
+      overTime: addData.overTime,
+    };
+
+    const newUsers = [...addNewUser, newUser];
+    setaddNewUser(newUsers);
+    console.log("cliked");
+  };
+
+  console.log(addData);
   const isOpen = props.isOpen;
   const toggle = props.toggle;
 
@@ -22,7 +61,7 @@ function AddStaff(props) {
         <Modal isOpen={isOpen}>
           <ModalHeader toggle={toggle}>Thêm Nhân Viên</ModalHeader>
           <ModalBody>
-            <Form>
+            <Form onSubmit={handleAddFormSubmit}>
               <FormGroup>
                 <Label>Tên:</Label>
                 <Input
@@ -30,6 +69,7 @@ function AddStaff(props) {
                   name="name"
                   placeholder="Tên Nhân Viên"
                   type="text"
+                  onChange={handleAddUserOnchange}
                   invalid
                 ></Input>
               </FormGroup>
@@ -42,6 +82,7 @@ function AddStaff(props) {
                   placeholder="Ngày sinh"
                   type="date"
                   invalid
+                  onChange={handleAddUserOnchange}
                 ></Input>
               </FormGroup>
 
@@ -53,14 +94,16 @@ function AddStaff(props) {
                   placeholder="Ngày vào công ty"
                   type="date"
                   invalid
+                  onChange={handleAddUserOnchange}
                 ></Input>
               </FormGroup>
 
               <FormGroup>
                 <Label>Phòng ban:</Label>
                 <Input
-                  id="Department"
-                  name="Department"
+                  onChange={handleAddUserOnchange}
+                  id="department"
+                  name="department"
                   placeholder="Phòng ban"
                   type="select"
                 >
@@ -75,10 +118,11 @@ function AddStaff(props) {
               <FormGroup>
                 <Label>Hệ số lương:</Label>
                 <Input
-                  id="scalary"
-                  name="scalary"
+                  id="salaryScale"
+                  name="salaryScale"
                   placeholder="Hệ số lương"
                   type="number"
+                  onChange={handleAddUserOnchange}
                 ></Input>
               </FormGroup>
 
@@ -89,23 +133,28 @@ function AddStaff(props) {
                   name="annualLeave"
                   placeholder="Số ngày nghỉ còn lại"
                   type="number"
+                  onChange={handleAddUserOnchange}
                 ></Input>
               </FormGroup>
 
               <FormGroup>
                 <Label>Số ngày đã làm thêm:</Label>
                 <Input
-                  id="overtime"
-                  name="overtime"
+                  id="overTime"
+                  name="overTime"
                   placeholder="Số ngày đã làm thêm"
                   type="number"
+                  onChange={handleAddUserOnchange}
                 ></Input>
               </FormGroup>
+              <hr />
+              <div className="text-end">
+                <Button className="w-25" type="submit" color="primary" onclick>
+                  Thêm
+                </Button>
+              </div>
             </Form>
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary">Thêm</Button>
-          </ModalFooter>
         </Modal>
       </div>
     </>
