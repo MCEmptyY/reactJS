@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { STAFFS } from "./staffs/staffs";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormFeedback,
-} from "reactstrap";
+import { Button } from "reactstrap";
 
-import Addstaff from "./addStaff";
+import AddStaff from "./addStaff";
 
 export default function Stafflist() {
   const [input, setInput] = useState("");
@@ -62,13 +51,12 @@ export default function Stafflist() {
                 onChange={(e) => setInput(e.target.value)} // update giá trị của state --> giá trị ở đây là value={input}
                 placeholder="Search here ..."
               />
-              {/* <input type="submit" value="Submit" className="btn btn-primary" /> */}
             </div>
             <div className="text-center">
               <Button color="danger" onClick={() => setOpenModal(!openModal)}>
                 +
               </Button>
-              <Addstaff isOpen={openModal} toggle={toggle} />
+              <AddStaff isOpen={openModal} toggle={toggle} />
             </div>
           </div>
         </div>

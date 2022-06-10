@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Button,
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Form,
   FormGroup,
   Label,
@@ -26,13 +25,22 @@ function AddStaff(props) {
   });
 
   const handleAddUserOnchange = (event) => {
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
+    const fieldName = event.target.getAttribute("name"); // tìm thuộc tính name của các input
+    const fieldValue = event.target.value; // lấy giá trị người dùng nhập
 
-    const newFormData = { ...addData };
-    newFormData[fieldName] = fieldValue;
+    const newFormData = { ...addData }; // copy lại state form người dùng :
+    // useState({
+    //   name: "",
+    //   doB: "",
+    //   salaryScale: 0,
+    //   startDate: "",
+    //   department: "",
+    //   annualLeave: 0,
+    //   overTime: 0,
+    // }) ==         { ...addData }
+    newFormData[fieldName] = fieldValue; // form thuộc tính cần nhập = giá trị nhập
 
-    setAddData(newFormData);
+    setAddData(newFormData); // cập nhật form vào state
   };
 
   const handleAddFormSubmit = (event) => {
@@ -46,12 +54,21 @@ function AddStaff(props) {
       overTime: addData.overTime,
     };
 
-    const newUsers = [...addNewUser, newUser];
+    const newUsers = [...addNewUser, newUser]; // copy STAFFS đã có + user được add
     setaddNewUser(newUsers);
-    console.log("cliked");
   };
 
-  console.log(addData);
+  // useEffect render cuối cùng
+  // sẽ render lại sau khi web re-render
+  useEffect(() => {
+    STAFFS.concat(addNewUser);
+    console.log("changed");
+
+    return () => {
+      <>{addNewUser.name};</>;
+    };
+  }, [addNewUser]);
+
   const isOpen = props.isOpen;
   const toggle = props.toggle;
 
