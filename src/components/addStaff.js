@@ -10,6 +10,7 @@ import {
   Label,
   Input,
 } from "reactstrap";
+
 import { STAFFS } from "./staffs/staffs";
 
 function AddStaff(props) {
@@ -41,6 +42,9 @@ function AddStaff(props) {
     newFormData[fieldName] = fieldValue; // form thuộc tính cần nhập = giá trị nhập
 
     setAddData(newFormData); // cập nhật form vào state
+    if (addData) {
+      props.entryData(addData);
+    }
   };
 
   const handleAddFormSubmit = (event) => {
@@ -55,19 +59,14 @@ function AddStaff(props) {
     };
 
     const newUsers = [...addNewUser, newUser]; // copy STAFFS đã có + user được add
-    setaddNewUser(newUsers);
+    setaddNewUser(newUsers); // chậm 1 lần load
+
+    // nếu newUser thì alert("hi") được truyền từ components cha
+    // truyền data từ con sang cha : props.createNewuser(addData) ---> cha sẽ nhận được state addData
+    if ((addData, addNewUser)) {
+      props.createNewuser(addData, addNewUser);
+    }
   };
-
-  // useEffect render cuối cùng
-  // sẽ render lại sau khi web re-render
-  useEffect(() => {
-    STAFFS.concat(addNewUser);
-    console.log("changed");
-
-    return () => {
-      <>{addNewUser.name};</>;
-    };
-  }, [addNewUser]);
 
   const isOpen = props.isOpen;
   const toggle = props.toggle;
@@ -166,7 +165,12 @@ function AddStaff(props) {
               </FormGroup>
               <hr />
               <div className="text-end">
-                <Button className="w-25" type="submit" color="primary" onclick>
+                <Button
+                  onClick={toggle}
+                  className="w-25"
+                  type="submit"
+                  color="primary"
+                >
                   Thêm
                 </Button>
               </div>

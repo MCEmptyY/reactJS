@@ -6,7 +6,8 @@ import { Button } from "reactstrap";
 
 import AddStaff from "./addStaff";
 
-export default function Stafflist() {
+export default function Stafflist(e) {
+  const [showStaffs, setStaff] = useState(STAFFS);
   const [input, setInput] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const toggle = () => setOpenModal(!openModal);
@@ -15,26 +16,34 @@ export default function Stafflist() {
     event.preventDefault();
   };
 
-  const renderStafflist = STAFFS.filter((val) => {
-    return val.name.toLowerCase().includes(input.toLowerCase());
-  }).map((staff) => {
-    return (
-      <div key={staff.id} className="col-2 mt-3">
-        <Link to={`/staff/${staff.id}`}>
-          <div className="card">
-            <div className="card-body bg-warning">
-              <img
-                src={require("./staffs/staff.png")}
-                className="text-center w-100"
-                alt="..."
-              />
-              <h3 className="card-text text-center">{staff.name}</h3>
+  const renderStafflist = showStaffs
+    .filter((val) => {
+      return val.name.toLowerCase().includes(input.toLowerCase());
+    })
+    .map((staff) => {
+      return (
+        <div key={staff.id} className="col-2 mt-3">
+          <Link to={`/staff/${staff.id}`}>
+            <div className="card">
+              <div className="card-body bg-warning">
+                <img
+                  src={require("./staffs/staff.png")}
+                  className="text-center w-100"
+                  alt="..."
+                />
+                <h3 className="card-text text-center">{staff.name}</h3>
+              </div>
             </div>
-          </div>
-        </Link>
-      </div>
-    );
-  });
+          </Link>
+        </div>
+      );
+    });
+
+  // truyền function qua addstaff
+  // get data từ addstaff by (data)
+  const createNewuser = (newUser) => {
+    setStaff(newUser);
+  };
 
   return (
     <>
@@ -44,6 +53,7 @@ export default function Stafflist() {
           <div className="col-6">
             <div className="text-center">
               <label className="h3 fw-bold">Tìm nhân viên: </label>
+
               <input
                 type="text"
                 value={input}
@@ -56,7 +66,11 @@ export default function Stafflist() {
               <Button color="danger" onClick={() => setOpenModal(!openModal)}>
                 +
               </Button>
-              <AddStaff isOpen={openModal} toggle={toggle} />
+              <AddStaff
+                isOpen={openModal}
+                toggle={toggle}
+                createNewuser={createNewuser}
+              />
             </div>
           </div>
         </div>

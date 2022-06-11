@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { STAFFS } from "./staffs/staffs";
 
 const DetailsStaff = () => {
   const { staffId } = useParams();
+  const [createDetailsStaff, setStaff] = useState(STAFFS);
 
-  const Infor = STAFFS.map((staff) => {
+  const Infor = createDetailsStaff.map((staff) => {
     if (staff.id === +staffId)
       return (
         <div key={staff.id} className="row m-3">
