@@ -1,25 +1,21 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-import Header from "./components/Header";
-import StaffList from "./pages/StaffList";
-import "bootstrap/dist/css/bootstrap.min.css";
-import DetailsStaff from "./pages/StaffDetails";
-import DepartmentStaff from "./pages/Department";
-import Salary from "./pages/Salary";
+import Main from './components/index'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+import store from './redux/store'
 
 function App() {
-  return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/staff" element={<StaffList />}></Route>
-        <Route path="/staff/:staffId" element={<DetailsStaff />}></Route>
-        <Route path="/Department" element={<DepartmentStaff />}></Route>
-        <Route path="/Salary" element={<Salary />}></Route>
-      </Routes>
-    </Router>
-  );
+    return (
+        <>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Main />
+                </BrowserRouter>
+            </Provider>
+        </>
+    )
 }
 
-export default App;
+export default App

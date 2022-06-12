@@ -54,6 +54,7 @@ export default function ModalAddStaff(props) {
                 <ModalBody>
                     <Form onSubmit={formik.handleSubmit}>
                         <FormGroup>
+                            {/* name field */}
                             <Label for="name">
                                 Tên nhân viên
                             </Label>
@@ -72,6 +73,7 @@ export default function ModalAddStaff(props) {
                         <Row>
                             <Col md={6}>
                                 <FormGroup>
+                                    {/* doB field */}
                                     <Label for="doB">
                                         Ngày sinh
                                     </Label>
@@ -91,6 +93,7 @@ export default function ModalAddStaff(props) {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
+                                    {/* startDate field*/}
                                     <Label for="startDate">
                                         Ngày vào Công ty
                                     </Label>
@@ -110,6 +113,7 @@ export default function ModalAddStaff(props) {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
+                                    {/* salaryScale field */}
                                     <Label for="salaryScale">
                                         Hệ số lương
                                     </Label>
@@ -129,6 +133,7 @@ export default function ModalAddStaff(props) {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
+                                    {/* department field */}
                                     <Label for="department">
                                         Phòng ban
                                     </Label>
@@ -153,6 +158,7 @@ export default function ModalAddStaff(props) {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
+                                    {/* annualLeave field */}
                                     <Label for="annualLeave">
                                         Ngày phép còn lại
                                     </Label>
@@ -172,6 +178,7 @@ export default function ModalAddStaff(props) {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
+                                    {/* overTime field */}
                                     <Label for="overTime">
                                         Số giờ OT
                                     </Label>
